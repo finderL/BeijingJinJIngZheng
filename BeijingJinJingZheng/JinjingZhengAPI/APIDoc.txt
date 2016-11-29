@@ -1,0 +1,81 @@
+﻿#发送手机验证码
+=request:
+POST https://bjjj.zhongchebaolian.com/common_api/mobile/standard/verification HTTP/1.1
+Host: bjjj.zhongchebaolian.com
+Content-Type: application/json
+Cookie: JSESSIONID=61B2BA79ED4AA762EA837602407D0C67
+Connection: keep-alive
+Accept: application/json
+User-Agent: BeiJingJiaoJing/1.1.1 (iPhone; iOS 10.1.1; Scale/2.00)
+Accept-Language: zh-Hans-CN;q=1
+Content-Length: 36
+Accept-Encoding: gzip, deflate
+
+{"phone":"111111111111","regist":"1"}
+____________________________
+=response:
+{"verification":"","resdes":"短信发送成功","rescode":"200"}
+
+#登陆
+=request:
+POST https://api.accident.zhongchebaolian.com/industryguild_mobile_standard_self2.1.2/mobile/standard/login HTTP/1.1
+Host: api.accident.zhongchebaolian.com
+Content-Type: application/json
+Cookie: JSESSIONID=1703E70F6FB5577C1C29D87AC80A9469; CNZZDATA1260761932=1930519429-1478833431-https%253A%252F%252Fapi.accident.zhongchebaolian.com%252F%7C1478833431; CNZZDATA1260051969=1569403099-1472629215-https%253A%252F%252Fapi.accident.zhongchebaolian.com%252F%7C1478487591
+Connection: keep-alive
+Accept: application/json
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12F70 Safari/600.1.4
+Accept-Language: zh-Hans-CN;q=1
+Content-Length: 274
+Accept-Encoding: gzip, deflate
+
+{"devicetype":"0","lon":"116.437342","phone":"11111111111","timestamp":"2016-11-29 12:53:09","source":"0","lat":"39.942857","token":"13165ffa4e0890ac09f","deviceid":"2803058bbc2bc19155c37b6b332eb893","citycode":"1101","appkey":"0791682354","valicode":"523901","vertype":"1"}
+____________________________
+=response:
+{"provincecode":null,"accesstoken":null,"userid":"asdsadwdawdawd09a281cdd0dab5bd6","userType":"1","policeno":"","ssid":"BWSXZ54173866698592415276172","provincetiny":null,"citycode":"","ssidcode":null,"rescode":"200","resdes":"登陆成功"}
+
+#获取申请信息列表
+=request:
+POST https://api.jinjingzheng.zhongchebaolian.com/enterbj/platform/enterbj/entercarlist HTTP/1.1
+Host: api.jinjingzheng.zhongchebaolian.com
+Accept: */*
+X-Requested-With: XMLHttpRequest
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-cn
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Origin: https://api.jinjingzheng.zhongchebaolian.com
+Content-Length: 137
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12F70 Safari/600.1.4
+Referer: https://api.jinjingzheng.zhongchebaolian.com/enterbj/jsp/enterbj/index.jsp
+Cookie: CNZZDATA1260761932=1485983547-1479980897-https%253A%252F%252Fapi.jinjingzheng.zhongchebaolian.com%252F%7C1479980897
+____________________________
+userid=f4232e85123456789cdd0dab5bd6&appkey=kkk&deviceid=ddd&timestamp=1480065999000&token=1234565963C3D450&appsource=
+=response:
+{"datalist":[{"carid":"15583446","userid":"f4232e85656516659a281cdd0dab5bd6","licenseno":"冀A0466E","applyflag":"0","carapplyarr":[{"applyid":"156156165","carid":"1516","cartype":"02","engineno":"25515","enterbjend":"2016-11-27","enterbjstart":"2016-11-25","existpaper":"","licenseno":"冀564401E","loadpapermethod":"","remark":"6361266666666","status":"1","syscode":"","syscodedesc":"","userid":"asdsadwdawdawd09a281cdd0dab5bd6"}]}],"rescode":"200","resdes":"获取申请信息列表成功"}
+
+status = 0 //审核失败
+status = 1 //审核成功
+status = 2 //审核中
+applyflag = 1 //可以申请
+
+#申请进京证
+=request:
+POST https://api.jinjingzheng.zhongchebaolian.com/enterbj/platform/enterbj/submitpaper HTTP/1.1
+Host: api.jinjingzheng.zhongchebaolian.com
+Accept: application/json, text/javascript, */*; q=0.01
+X-Requested-With: XMLHttpRequest
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-cn
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Origin: https://api.jinjingzheng.zhongchebaolian.com
+Content-Length: 164043
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Mobile/14B100
+Referer: https://api.jinjingzheng.zhongchebaolian.com/enterbj/platform/enterbj/loadotherdrivers
+Cookie: JSESSIONID=5B9FE3463122A91DDAA658278784B204
+
+appsource=bjjj@inbjentrancecode1=05@inbjentrancecode=19@inbjduration=2@inbjtime=2016-11-19@appkey=@deviceid=&token=&timestamp=@userid=asdsadwdawdawd09a281cdd0dab5bd6&licenseno=%E5%86%80A0401E@engineno=10330824@cartypecode=02@vehicletype=12@drivingphoto=%252F9j%2@carphoto=%252F9j%252F4AA@drivername=%E8%A2%81%E5%85%A8%E4%BC%9F@driverlicenseno=412702199003106952@driverphoto=%252F@personphoto=@gpslon=@gpslat=@phoneno=@imei=@imsi=@carid=1283446
+____________________________
+=response:
+{"rescode":"200","resdes":"申请成功"}
