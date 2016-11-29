@@ -30,6 +30,10 @@
             this.button_sendverfiy = new System.Windows.Forms.Button();
             this.textBox_phonenum = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox_code = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button_login = new System.Windows.Forms.Button();
+            this.button_entercarlist = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_sendverfiy
@@ -58,11 +62,51 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "手机号:";
             // 
+            // textBox_code
+            // 
+            this.textBox_code.Location = new System.Drawing.Point(50, 55);
+            this.textBox_code.Name = "textBox_code";
+            this.textBox_code.Size = new System.Drawing.Size(100, 21);
+            this.textBox_code.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 12);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "验证码:";
+            // 
+            // button_login
+            // 
+            this.button_login.Location = new System.Drawing.Point(157, 52);
+            this.button_login.Name = "button_login";
+            this.button_login.Size = new System.Drawing.Size(75, 23);
+            this.button_login.TabIndex = 5;
+            this.button_login.Text = "登陆";
+            this.button_login.UseVisualStyleBackColor = true;
+            this.button_login.Click += new System.EventHandler(this.button_login_Click);
+            // 
+            // button_entercarlist
+            // 
+            this.button_entercarlist.Location = new System.Drawing.Point(5, 96);
+            this.button_entercarlist.Name = "button_entercarlist";
+            this.button_entercarlist.Size = new System.Drawing.Size(114, 23);
+            this.button_entercarlist.TabIndex = 6;
+            this.button_entercarlist.Text = "获取申请信息列表";
+            this.button_entercarlist.UseVisualStyleBackColor = true;
+            this.button_entercarlist.Click += new System.EventHandler(this.button_entercarlist_Click);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(255, 205);
+            this.Controls.Add(this.button_entercarlist);
+            this.Controls.Add(this.button_login);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox_code);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_phonenum);
             this.Controls.Add(this.button_sendverfiy);
@@ -78,6 +122,10 @@
         private System.Windows.Forms.Button button_sendverfiy;
         private System.Windows.Forms.TextBox textBox_phonenum;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox_code;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button_login;
+        private System.Windows.Forms.Button button_entercarlist;
     }
 }
 

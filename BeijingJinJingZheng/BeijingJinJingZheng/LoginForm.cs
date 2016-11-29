@@ -29,5 +29,29 @@ namespace BeijingJinJingZheng
                 }
             });
         }
+
+        private void button_login_Click(object sender, EventArgs e)
+        {
+            JinJingZhengAPI.Login(textBox_phonenum.Text, textBox_code.Text, (result, ex) => {
+                if (ex == null) {
+                    MessageBox.Show(result["resdes"].ToString(), result["rescode"].ToString());
+                    Debug.Write(result);
+                } else {
+                    MessageBox.Show(ex.Message, "登陆失败");
+                }
+            });
+        }
+
+        private void button_entercarlist_Click(object sender, EventArgs e)
+        {
+            JinJingZhengAPI.GetEnterCarList(textBox_phonenum.Text,(result, ex) => {
+                if (ex == null) {
+                    MessageBox.Show(result["resdes"].ToString(), result["rescode"].ToString());
+                    Debug.Write(result);
+                } else {
+                    MessageBox.Show(ex.Message, "获取申请信息列表失败");
+                }
+            });
+        }
     }
 }
