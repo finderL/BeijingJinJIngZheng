@@ -79,3 +79,8 @@ appsource=bjjj@inbjentrancecode1=05@inbjentrancecode=19@inbjduration=2@inbjtime=
 ____________________________
 =response:
 {"rescode":"200","resdes":"申请成功"}
+
+图片需要先转为base64字符串
+然后将base64字符串中的
+/ 替换为%252F
++ 替换为%252B
