@@ -44,14 +44,21 @@ namespace BeijingJinJingZheng
 
         private void button_entercarlist_Click(object sender, EventArgs e)
         {
-            JinJingZhengAPI.GetEnterCarList(textBox_phonenum.Text,(result, ex) => {
-                if (ex == null) {
-                    MessageBox.Show(result["resdes"].ToString(), result["rescode"].ToString());
-                    Debug.Write(result);
-                } else {
-                    MessageBox.Show(ex.Message, "获取申请信息列表失败");
-                }
-            });
+            //JinJingZhengAPI.GetEnterCarList(textBox_phonenum.Text,(result, ex) => {
+            //    if (ex == null) {
+            //        MessageBox.Show(result["resdes"].ToString(), result["rescode"].ToString());
+            //        Debug.Write(result);
+            //    } else {
+            //        MessageBox.Show(ex.Message, "获取申请信息列表失败");
+            //    }
+            //});
+
+
+            //base64 test
+            var img = Image.FromFile("d:/test.jpg");
+            string b64 = JinjingZhengAPIUtil.Image2Base64(img);
+            Console.WriteLine("==============================");
+            Console.WriteLine(b64);
         }
     }
 }
