@@ -222,6 +222,7 @@ namespace BeijingJinJingZheng
         {
             if (DialogResult.OK == MessageBox.Show("你确定要关闭应用程序吗？", "关闭提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)) {
                 this.FormClosing -= new FormClosingEventHandler(this.FormLogin_FormClosing);
+                auto.Stop();
                 Application.Exit();//退出整个应用程序
             } else {
                 e.Cancel = true;  //取消关闭事件,并最小化;
