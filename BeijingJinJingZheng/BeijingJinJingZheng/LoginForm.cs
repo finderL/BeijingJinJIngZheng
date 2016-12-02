@@ -10,13 +10,14 @@ using System.Windows.Forms;
 using JinjingZheng;
 using System.Diagnostics;
 using Microsoft.Win32;
-
+using System.IO;
 namespace BeijingJinJingZheng
 {
     public partial class FormLogin : Form
     {
         public FormLogin()
         {
+            System.IO.Directory.SetCurrentDirectory(Path.GetDirectoryName(Application.ExecutablePath));
             InitializeComponent();
             LogWrapper.OnRecvLog += OnRecvLog;
         }
@@ -69,6 +70,7 @@ namespace BeijingJinJingZheng
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
+           
             LoadConfig();
 
             if (mConfig.ActAsStartup) {
