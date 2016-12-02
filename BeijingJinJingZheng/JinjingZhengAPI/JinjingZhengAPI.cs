@@ -47,22 +47,6 @@ namespace JinjingZheng
         public static void Login(string phone,string valicode,APICallBack cb)
         {
 
-            //request 
-            /* {
-                 "devicetype": "0",
-                 "lon": "116.437342",
-                 "phone": "11111111111",
-                 "timestamp": "2016-11-29 12:53:09",
-                 "source": "0",
-                 "lat": "39.942857",
-                 "token": "13165ffa4e0890ac09f",
-                 "deviceid": "2803058bbc2bc19155c37b6b332eb893",
-                 "citycode": "1101",
-                 "appkey": "0791682354",
-                 "valicode": "523901",
-                 "vertype": "1"
-             }*/
-
             JObject o = new JObject();
             o["devicetype"] = "0";
             o["lon"] = "116.437342";
@@ -93,20 +77,6 @@ namespace JinjingZheng
 
         public static void GetEnterCarList(string userid,APICallBack cb)
         {
-
-            //var req = Http.Post("https://api.jinjingzheng.zhongchebaolian.com/enterbj/platform/enterbj/entercarlist");
-            //req.Form(new {
-            //    userid = userid,
-            //    appkey ="kkk",
-            //    deviceid ="ddd",
-            //    timestamp =JinjingZhengAPIUtil.GetTimestamp(),
-            //    token =JinjingZhengAPIUtil.CalcToken(),
-            //    appsource = ""
-            //}).OnSuccess((str) => {
-            //      cb?.Invoke(JObject.Parse(str));
-            //}).OnFail((ex) => {
-            //      cb?.Invoke(null, ex);
-            //}).Go();
 
 
             string url = "https://api.jinjingzheng.zhongchebaolian.com/enterbj/platform/enterbj/entercarlist";
@@ -150,43 +120,6 @@ namespace JinjingZheng
             string licenseno,string engineno,string cartypecode,string vehicletype, Image drivingphoto,
             Image carphoto,string drivername,string driverlicenseno, Image driverphoto, Image personphoto,string carid, APICallBack cb)
         {
-            //var req = Http.Post("https://api.jinjingzheng.zhongchebaolian.com/enterbj/platform/enterbj/submitpaper");
-
-            ////req.Body(BodyProvider)
-
-            //req.Form(new {
-            //    appsource = "bjjj",
-            //    inbjentrancecode1 = "05",
-            //    inbjentrancecode = "19",
-            //    inbjduration = inbjduration.ToString(),
-            //    inbjtime = inbjtime.ToString("yyyy-MM-dd"),
-            //    appkey = "",
-            //    deviceid = "",
-            //    token = "",
-            //    timestamp = "",
-            //    userid = userid,
-            //    licenseno = licenseno,
-            //    engineno = engineno,
-            //    cartypecode = cartypecode,
-            //    vehicletype = vehicletype,
-            //    drivingphoto = JinjingZhengAPIUtil.Image2Base64(drivingphoto),
-            //    carphoto = JinjingZhengAPIUtil.Image2Base64(carphoto),
-            //    drivername = drivername,
-            //    driverlicenseno = driverlicenseno,
-            //    driverphoto = JinjingZhengAPIUtil.Image2Base64(driverphoto),
-            //    personphoto = JinjingZhengAPIUtil.Image2Base64(personphoto),
-            //    gpslon = "",
-            //    gpslat = "",
-            //    phoneno = "",
-            //    imei = "",
-            //    imsi = "",
-            //    carid = carid,
-            //}).OnSuccess((str) => {
-            //    cb?.Invoke(JObject.Parse(str));
-            //}).OnFail((ex) => {
-            //    cb?.Invoke(null, ex);
-            //}).Go();
-
 
             string url = "https://api.jinjingzheng.zhongchebaolian.com/enterbj/platform/enterbj/submitpaper";
             string data = Utils.SerializeQueryString(new {
@@ -223,13 +156,6 @@ namespace JinjingZheng
             data = data.Replace("IMGDRIVERPHOTO", Utils.Image2Base64(driverphoto));
             data = data.Replace("IMGPERSONPHOTO", Utils.Image2Base64(personphoto));
 
-
-            //drivingphoto = Utils.Image2Base64(drivingphoto),
-            //    carphoto = Utils.Image2Base64(carphoto),
-            //    drivername = drivername,
-            //    driverlicenseno = driverlicenseno,
-            //    driverphoto = Utils.Image2Base64(driverphoto),
-            //    personphoto = Utils.Image2Base64(personphoto),
 
 
             HttpPost(url, data, "application/x-www-form-urlencoded; charset=UTF-8", (result, ex) => {

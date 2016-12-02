@@ -39,8 +39,9 @@
             this.tabPage_main = new System.Windows.Forms.TabPage();
             this.textBox_uid = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button_run = new System.Windows.Forms.Button();
-            this.textBox_log = new System.Windows.Forms.TextBox();
+            this.checkBox_autuhide = new System.Windows.Forms.CheckBox();
+            this.checkBox_actonStartup = new System.Windows.Forms.CheckBox();
+            this.checkBox_autostart = new System.Windows.Forms.CheckBox();
             this.button_saveconfig = new System.Windows.Forms.Button();
             this.textBox_interval = new System.Windows.Forms.TextBox();
             this.textBox_personphoto = new System.Windows.Forms.TextBox();
@@ -64,13 +65,23 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkBox_autostart = new System.Windows.Forms.CheckBox();
-            this.checkBox_actonStartup = new System.Windows.Forms.CheckBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.checkBox_autuhide = new System.Windows.Forms.CheckBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox_log = new System.Windows.Forms.TextBox();
+            this.button_run = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox_enablemail = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox_mailid = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox_mailpassword = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox_tomail = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage_main.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_sendverfiy
@@ -129,6 +140,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage_main);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -162,11 +174,11 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Controls.Add(this.button_run);
             this.tabPage2.Controls.Add(this.checkBox_autuhide);
             this.tabPage2.Controls.Add(this.checkBox_actonStartup);
             this.tabPage2.Controls.Add(this.checkBox_autostart);
-            this.tabPage2.Controls.Add(this.button_run);
-            this.tabPage2.Controls.Add(this.textBox_log);
             this.tabPage2.Controls.Add(this.button_saveconfig);
             this.tabPage2.Controls.Add(this.textBox_interval);
             this.tabPage2.Controls.Add(this.textBox_personphoto);
@@ -198,32 +210,39 @@
             this.tabPage2.Text = "设置";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button_run
+            // checkBox_autuhide
             // 
-            this.button_run.Location = new System.Drawing.Point(226, 343);
-            this.button_run.Name = "button_run";
-            this.button_run.Size = new System.Drawing.Size(278, 23);
-            this.button_run.TabIndex = 5;
-            this.button_run.Text = "启动";
-            this.button_run.UseVisualStyleBackColor = true;
-            this.button_run.Click += new System.EventHandler(this.button_run_Click);
+            this.checkBox_autuhide.AutoSize = true;
+            this.checkBox_autuhide.Location = new System.Drawing.Point(256, 290);
+            this.checkBox_autuhide.Name = "checkBox_autuhide";
+            this.checkBox_autuhide.Size = new System.Drawing.Size(132, 16);
+            this.checkBox_autuhide.TabIndex = 6;
+            this.checkBox_autuhide.Text = "启动时最小化到托盘";
+            this.checkBox_autuhide.UseVisualStyleBackColor = true;
             // 
-            // textBox_log
+            // checkBox_actonStartup
             // 
-            this.textBox_log.BackColor = System.Drawing.Color.Black;
-            this.textBox_log.ForeColor = System.Drawing.Color.White;
-            this.textBox_log.Location = new System.Drawing.Point(226, 17);
-            this.textBox_log.MaxLength = 32767000;
-            this.textBox_log.Multiline = true;
-            this.textBox_log.Name = "textBox_log";
-            this.textBox_log.ReadOnly = true;
-            this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_log.Size = new System.Drawing.Size(278, 301);
-            this.textBox_log.TabIndex = 4;
+            this.checkBox_actonStartup.AutoSize = true;
+            this.checkBox_actonStartup.Location = new System.Drawing.Point(256, 268);
+            this.checkBox_actonStartup.Name = "checkBox_actonStartup";
+            this.checkBox_actonStartup.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_actonStartup.TabIndex = 6;
+            this.checkBox_actonStartup.Text = "启动自动开始";
+            this.checkBox_actonStartup.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_autostart
+            // 
+            this.checkBox_autostart.AutoSize = true;
+            this.checkBox_autostart.Location = new System.Drawing.Point(256, 246);
+            this.checkBox_autostart.Name = "checkBox_autostart";
+            this.checkBox_autostart.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_autostart.TabIndex = 6;
+            this.checkBox_autostart.Text = "开机自动启动";
+            this.checkBox_autostart.UseVisualStyleBackColor = true;
             // 
             // button_saveconfig
             // 
-            this.button_saveconfig.Location = new System.Drawing.Point(182, 397);
+            this.button_saveconfig.Location = new System.Drawing.Point(74, 397);
             this.button_saveconfig.Name = "button_saveconfig";
             this.button_saveconfig.Size = new System.Drawing.Size(75, 23);
             this.button_saveconfig.TabIndex = 3;
@@ -409,26 +428,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "用户ID";
             // 
-            // checkBox_autostart
-            // 
-            this.checkBox_autostart.AutoSize = true;
-            this.checkBox_autostart.Location = new System.Drawing.Point(38, 330);
-            this.checkBox_autostart.Name = "checkBox_autostart";
-            this.checkBox_autostart.Size = new System.Drawing.Size(96, 16);
-            this.checkBox_autostart.TabIndex = 6;
-            this.checkBox_autostart.Text = "开机自动启动";
-            this.checkBox_autostart.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_actonStartup
-            // 
-            this.checkBox_actonStartup.AutoSize = true;
-            this.checkBox_actonStartup.Location = new System.Drawing.Point(38, 352);
-            this.checkBox_actonStartup.Name = "checkBox_actonStartup";
-            this.checkBox_actonStartup.Size = new System.Drawing.Size(96, 16);
-            this.checkBox_actonStartup.TabIndex = 6;
-            this.checkBox_actonStartup.Text = "启动自动开始";
-            this.checkBox_actonStartup.UseVisualStyleBackColor = true;
-            // 
             // notifyIcon1
             // 
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
@@ -436,15 +435,114 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
             // 
-            // checkBox_autuhide
+            // tabPage1
             // 
-            this.checkBox_autuhide.AutoSize = true;
-            this.checkBox_autuhide.Location = new System.Drawing.Point(38, 374);
-            this.checkBox_autuhide.Name = "checkBox_autuhide";
-            this.checkBox_autuhide.Size = new System.Drawing.Size(132, 16);
-            this.checkBox_autuhide.TabIndex = 6;
-            this.checkBox_autuhide.Text = "启动时最小化到托盘";
-            this.checkBox_autuhide.UseVisualStyleBackColor = true;
+            this.tabPage1.Controls.Add(this.textBox_log);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(510, 426);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "日志";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textBox_log
+            // 
+            this.textBox_log.BackColor = System.Drawing.Color.Black;
+            this.textBox_log.ForeColor = System.Drawing.Color.White;
+            this.textBox_log.Location = new System.Drawing.Point(9, 6);
+            this.textBox_log.MaxLength = 32767000;
+            this.textBox_log.Multiline = true;
+            this.textBox_log.Name = "textBox_log";
+            this.textBox_log.ReadOnly = true;
+            this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox_log.Size = new System.Drawing.Size(501, 417);
+            this.textBox_log.TabIndex = 6;
+            // 
+            // button_run
+            // 
+            this.button_run.Location = new System.Drawing.Point(199, 397);
+            this.button_run.Name = "button_run";
+            this.button_run.Size = new System.Drawing.Size(84, 23);
+            this.button_run.TabIndex = 8;
+            this.button_run.Text = "启动";
+            this.button_run.UseVisualStyleBackColor = true;
+            this.button_run.Click += new System.EventHandler(this.button_run_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBox_enablemail);
+            this.groupBox1.Controls.Add(this.textBox_tomail);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.textBox_mailpassword);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.textBox_mailid);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Location = new System.Drawing.Point(236, 20);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(234, 152);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "邮件提醒";
+            // 
+            // checkBox_enablemail
+            // 
+            this.checkBox_enablemail.AutoSize = true;
+            this.checkBox_enablemail.Location = new System.Drawing.Point(20, 20);
+            this.checkBox_enablemail.Name = "checkBox_enablemail";
+            this.checkBox_enablemail.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_enablemail.TabIndex = 7;
+            this.checkBox_enablemail.Text = "开启邮件提醒";
+            this.checkBox_enablemail.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(62, 48);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(29, 12);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "邮箱";
+            // 
+            // textBox_mailid
+            // 
+            this.textBox_mailid.Location = new System.Drawing.Point(106, 48);
+            this.textBox_mailid.Name = "textBox_mailid";
+            this.textBox_mailid.Size = new System.Drawing.Size(100, 21);
+            this.textBox_mailid.TabIndex = 1;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(62, 75);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(29, 12);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "密码";
+            // 
+            // textBox_mailpassword
+            // 
+            this.textBox_mailpassword.Location = new System.Drawing.Point(106, 75);
+            this.textBox_mailpassword.Name = "textBox_mailpassword";
+            this.textBox_mailpassword.PasswordChar = '*';
+            this.textBox_mailpassword.Size = new System.Drawing.Size(100, 21);
+            this.textBox_mailpassword.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(14, 102);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(77, 12);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "接收提醒邮箱";
+            // 
+            // textBox_tomail
+            // 
+            this.textBox_tomail.Location = new System.Drawing.Point(106, 102);
+            this.textBox_tomail.Name = "textBox_tomail";
+            this.textBox_tomail.Size = new System.Drawing.Size(100, 21);
+            this.textBox_tomail.TabIndex = 1;
             // 
             // FormLogin
             // 
@@ -466,6 +564,10 @@
             this.tabPage_main.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -505,12 +607,21 @@
         private System.Windows.Forms.TextBox textBox_driverlicenseno;
         private System.Windows.Forms.Button button_saveconfig;
         private System.Windows.Forms.TextBox textBox_uid;
-        private System.Windows.Forms.Button button_run;
-        private System.Windows.Forms.TextBox textBox_log;
         private System.Windows.Forms.CheckBox checkBox_actonStartup;
         private System.Windows.Forms.CheckBox checkBox_autostart;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.CheckBox checkBox_autuhide;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox textBox_log;
+        private System.Windows.Forms.Button button_run;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox checkBox_enablemail;
+        private System.Windows.Forms.TextBox textBox_tomail;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBox_mailpassword;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox_mailid;
+        private System.Windows.Forms.Label label14;
     }
 }
 

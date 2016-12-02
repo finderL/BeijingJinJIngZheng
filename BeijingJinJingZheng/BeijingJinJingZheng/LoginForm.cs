@@ -51,14 +51,6 @@ namespace BeijingJinJingZheng
 
         private void button_entercarlist_Click(object sender, EventArgs e)
         {
-            //JinJingZhengAPI.GetEnterCarList(textBox_phonenum.Text,(result, ex) => {
-            //    if (ex == null) {
-            //        MessageBox.Show(result["resdes"].ToString(), result["rescode"].ToString());
-            //        Debug.Write(result);
-            //    } else {
-            //        MessageBox.Show(ex.Message, "获取申请信息列表失败");
-            //    }
-            //});
 
 
             //base64 test
@@ -107,6 +99,10 @@ namespace BeijingJinJingZheng
             checkBox_actonStartup.Checked = mConfig.ActAsStartup;
             checkBox_autostart.Checked = mConfig.RunOnSystemStartup;
             checkBox_autuhide.Checked = mConfig.AutoHide;
+            checkBox_enablemail.Checked = mConfig.EnableMail;
+            textBox_mailid.Text = mConfig.UserMailID;
+            textBox_mailpassword.Text = mConfig.UserMailPassword;
+            textBox_tomail.Text = mConfig.ToMail;
 
         }
 
@@ -129,7 +125,11 @@ namespace BeijingJinJingZheng
                 mConfig.RunOnSystemStartup = checkBox_autostart.Checked;
                 SetAutoRun(mConfig.RunOnSystemStartup);
             }
-            
+
+            mConfig.EnableMail = checkBox_enablemail.Checked;
+            mConfig.UserMailID = textBox_mailid.Text;
+            mConfig.UserMailPassword= textBox_mailpassword.Text;
+            mConfig.ToMail= textBox_tomail.Text;
             mConfig.Save("./config.json");
         }
 

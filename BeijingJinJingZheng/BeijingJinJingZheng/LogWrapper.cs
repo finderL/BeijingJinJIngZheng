@@ -32,6 +32,15 @@ namespace BeijingJinJingZheng
         {
             WriteLog(LogLevel.Error, info);
         }
+        public static void LogErrorFormat(string info,params object[] arg)
+        {
+            LogError(string.Format(info,arg));
+        }
+
+        public static void LogInfoFormat(string info, params object[] arg)
+        {
+            LogInfo(string.Format(info, arg));
+        }
 
         public static void LogWarning(string info)
         {
