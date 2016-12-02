@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JinjingZheng;
 using System.Diagnostics;
+using Microsoft.Win32;
 
 namespace BeijingJinJingZheng
 {
@@ -69,6 +70,17 @@ namespace BeijingJinJingZheng
         private void FormLogin_Load(object sender, EventArgs e)
         {
             LoadConfig();
+
+            if (mConfig.ActAsStartup) {
+                button_run_Click(null, null);
+            }
+            if (mConfig.AutoHide) {
+                this.WindowState = FormWindowState.Minimized;
+                this.Hide();
+                this.ShowInTaskbar = false;
+                this.notifyIcon1.Visible = true;
+            }
+
         }
 
         private void button_saveconfig_Click(object sender, EventArgs e)
@@ -90,6 +102,10 @@ namespace BeijingJinJingZheng
             textBox_driverphoto.Text= mConfig.DriverPhoto;
             textBox_personphoto.Text= mConfig.PersonPhoto;
             textBox_interval.Text= mConfig.Interval.ToString();
+            checkBox_actonStartup.Checked = mConfig.ActAsStartup;
+            checkBox_autostart.Checked = mConfig.RunOnSystemStartup;
+            checkBox_autuhide.Checked = mConfig.AutoHide;
+
         }
 
         private void SaveConfig()
@@ -105,24 +121,69 @@ namespace BeijingJinJingZheng
             mConfig.DriverPhoto = textBox_driverphoto.Text;
             mConfig.PersonPhoto = textBox_personphoto.Text;
             mConfig.Interval = int.Parse(textBox_interval.Text);
+            mConfig.ActAsStartup = checkBox_actonStartup.Checked;
+            mConfig.AutoHide = checkBox_autuhide.Checked;
+            if (mConfig.RunOnSystemStartup != checkBox_autostart.Checked) {
+                mConfig.RunOnSystemStartup = checkBox_autostart.Checked;
+                SetAutoRun(mConfig.RunOnSystemStartup);
+            }
+            
             mConfig.Save("./config.json");
         }
 
+        void SetAutoRun(bool run)
+        {
+            if (run) //设置开机自启动  
+{
+                MessageBox.Show("设置开机自启动，需要修改注册表", "提示");
+                string path = Application.ExecutablePath;
+                RegistryKey rk = Registry.LocalMachine;
+                RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+                rk2.SetValue("JcShutdown", path);
+                rk2.Close();
+                rk.Close();
+            } else //取消开机自启动  
+              {
+                MessageBox.Show("取消开机自启动，需要修改注册表", "提示");
+                string path = Application.ExecutablePath;
+                RegistryKey rk = Registry.LocalMachine;
+                RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+                rk2.DeleteValue("JcShutdown", false);
+                rk2.Close();
+                rk.Close();
+            }
+        }
 
         private UserConfig mConfig;
         private JinjingZhengAutoRenew auto = new JinjingZhengAutoRenew();
 
         void RunInMainthread(Action action)
         {
-            this.BeginInvoke((Action)(delegate () {
-                action?.Invoke();
-            }));
+            try
+            {
+                this.BeginInvoke((Action)(delegate () {
+                    action?.Invoke();
+                }));
+            }
+            catch (System.Exception ex)
+            {
+                Debug.Write(ex.Message);
+            }
+
         }
 
         private void button_run_Click(object sender, EventArgs e)
         {
-            
-            auto.Run(mConfig);
+            if (!auto.IsRun) {
+                auto.Run(mConfig);
+                button_run.Text = "停止";
+            } else {
+                auto.Stop();
+                button_run.Text = "启动";
+            }
+
+
+
         }
 
         void OnRecvLog(LogLevel lv, string info)
@@ -134,6 +195,37 @@ namespace BeijingJinJingZheng
             RunInMainthread(() => {
                 textBox_log.Text += log + "\r\n";
             });
+        }
+
+        private void FormLogin_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized) {
+                this.Hide();
+                this.ShowInTaskbar = false;
+                this.notifyIcon1.Visible = true;
+            }
+        }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized) {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                notifyIcon1.Visible = false;
+                this.ShowInTaskbar = true;
+            }
+        }
+
+
+
+        private void FormLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (DialogResult.OK == MessageBox.Show("你确定要关闭应用程序吗？", "关闭提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)) {
+                this.FormClosing -= new FormClosingEventHandler(this.FormLogin_FormClosing);
+                Application.Exit();//退出整个应用程序
+            } else {
+                e.Cancel = true;  //取消关闭事件,并最小化;
+            }
         }
     }
 }

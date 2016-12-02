@@ -21,7 +21,12 @@ namespace BeijingJinJingZheng
         public int InbjDuration;
         public string DriverLicenseno;
         public int Interval;
-
+        // 开机自动启动
+        public bool RunOnSystemStartup;
+        // 启动时自动运行
+        public bool ActAsStartup;
+        //启动时自动最小化到托盘
+        public bool AutoHide;
 
         public static UserConfig FormFile(string path)
         {

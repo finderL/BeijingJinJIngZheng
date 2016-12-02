@@ -60,6 +60,9 @@ namespace BeijingJinJingZheng
             Waiting,
         }
 
+        
+
+
 
         UserConfig mConfig;
         Thread mWorkerThread;

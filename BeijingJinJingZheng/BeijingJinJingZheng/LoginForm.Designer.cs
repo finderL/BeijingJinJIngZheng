@@ -27,6 +27,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.button_sendverfiy = new System.Windows.Forms.Button();
             this.textBox_phonenum = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -35,7 +37,10 @@
             this.button_login = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_main = new System.Windows.Forms.TabPage();
+            this.textBox_uid = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button_run = new System.Windows.Forms.Button();
+            this.textBox_log = new System.Windows.Forms.TextBox();
             this.button_saveconfig = new System.Windows.Forms.Button();
             this.textBox_interval = new System.Windows.Forms.TextBox();
             this.textBox_personphoto = new System.Windows.Forms.TextBox();
@@ -59,9 +64,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox_uid = new System.Windows.Forms.TextBox();
-            this.textBox_log = new System.Windows.Forms.TextBox();
-            this.button_run = new System.Windows.Forms.Button();
+            this.checkBox_autostart = new System.Windows.Forms.CheckBox();
+            this.checkBox_actonStartup = new System.Windows.Forms.CheckBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.checkBox_autuhide = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage_main.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -146,8 +152,19 @@
             this.tabPage_main.Text = "登陆";
             this.tabPage_main.UseVisualStyleBackColor = true;
             // 
+            // textBox_uid
+            // 
+            this.textBox_uid.Location = new System.Drawing.Point(28, 195);
+            this.textBox_uid.Name = "textBox_uid";
+            this.textBox_uid.ReadOnly = true;
+            this.textBox_uid.Size = new System.Drawing.Size(395, 21);
+            this.textBox_uid.TabIndex = 6;
+            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.checkBox_autuhide);
+            this.tabPage2.Controls.Add(this.checkBox_actonStartup);
+            this.tabPage2.Controls.Add(this.checkBox_autostart);
             this.tabPage2.Controls.Add(this.button_run);
             this.tabPage2.Controls.Add(this.textBox_log);
             this.tabPage2.Controls.Add(this.button_saveconfig);
@@ -181,9 +198,32 @@
             this.tabPage2.Text = "设置";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // button_run
+            // 
+            this.button_run.Location = new System.Drawing.Point(226, 343);
+            this.button_run.Name = "button_run";
+            this.button_run.Size = new System.Drawing.Size(278, 23);
+            this.button_run.TabIndex = 5;
+            this.button_run.Text = "启动";
+            this.button_run.UseVisualStyleBackColor = true;
+            this.button_run.Click += new System.EventHandler(this.button_run_Click);
+            // 
+            // textBox_log
+            // 
+            this.textBox_log.BackColor = System.Drawing.Color.Black;
+            this.textBox_log.ForeColor = System.Drawing.Color.White;
+            this.textBox_log.Location = new System.Drawing.Point(226, 17);
+            this.textBox_log.MaxLength = 32767000;
+            this.textBox_log.Multiline = true;
+            this.textBox_log.Name = "textBox_log";
+            this.textBox_log.ReadOnly = true;
+            this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox_log.Size = new System.Drawing.Size(278, 301);
+            this.textBox_log.TabIndex = 4;
+            // 
             // button_saveconfig
             // 
-            this.button_saveconfig.Location = new System.Drawing.Point(38, 343);
+            this.button_saveconfig.Location = new System.Drawing.Point(182, 397);
             this.button_saveconfig.Name = "button_saveconfig";
             this.button_saveconfig.Size = new System.Drawing.Size(75, 23);
             this.button_saveconfig.TabIndex = 3;
@@ -369,36 +409,42 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "用户ID";
             // 
-            // textBox_uid
+            // checkBox_autostart
             // 
-            this.textBox_uid.Location = new System.Drawing.Point(28, 195);
-            this.textBox_uid.Name = "textBox_uid";
-            this.textBox_uid.ReadOnly = true;
-            this.textBox_uid.Size = new System.Drawing.Size(395, 21);
-            this.textBox_uid.TabIndex = 6;
+            this.checkBox_autostart.AutoSize = true;
+            this.checkBox_autostart.Location = new System.Drawing.Point(38, 330);
+            this.checkBox_autostart.Name = "checkBox_autostart";
+            this.checkBox_autostart.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_autostart.TabIndex = 6;
+            this.checkBox_autostart.Text = "开机自动启动";
+            this.checkBox_autostart.UseVisualStyleBackColor = true;
             // 
-            // textBox_log
+            // checkBox_actonStartup
             // 
-            this.textBox_log.BackColor = System.Drawing.Color.Black;
-            this.textBox_log.ForeColor = System.Drawing.Color.White;
-            this.textBox_log.Location = new System.Drawing.Point(226, 17);
-            this.textBox_log.MaxLength = 32767000;
-            this.textBox_log.Multiline = true;
-            this.textBox_log.Name = "textBox_log";
-            this.textBox_log.ReadOnly = true;
-            this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_log.Size = new System.Drawing.Size(278, 301);
-            this.textBox_log.TabIndex = 4;
+            this.checkBox_actonStartup.AutoSize = true;
+            this.checkBox_actonStartup.Location = new System.Drawing.Point(38, 352);
+            this.checkBox_actonStartup.Name = "checkBox_actonStartup";
+            this.checkBox_actonStartup.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_actonStartup.TabIndex = 6;
+            this.checkBox_actonStartup.Text = "启动自动开始";
+            this.checkBox_actonStartup.UseVisualStyleBackColor = true;
             // 
-            // button_run
+            // notifyIcon1
             // 
-            this.button_run.Location = new System.Drawing.Point(226, 343);
-            this.button_run.Name = "button_run";
-            this.button_run.Size = new System.Drawing.Size(278, 23);
-            this.button_run.TabIndex = 5;
-            this.button_run.Text = "启动";
-            this.button_run.UseVisualStyleBackColor = true;
-            this.button_run.Click += new System.EventHandler(this.button_run_Click);
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "进京证自动续签,双击打开";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
+            // 
+            // checkBox_autuhide
+            // 
+            this.checkBox_autuhide.AutoSize = true;
+            this.checkBox_autuhide.Location = new System.Drawing.Point(38, 374);
+            this.checkBox_autuhide.Name = "checkBox_autuhide";
+            this.checkBox_autuhide.Size = new System.Drawing.Size(132, 16);
+            this.checkBox_autuhide.TabIndex = 6;
+            this.checkBox_autuhide.Text = "启动时最小化到托盘";
+            this.checkBox_autuhide.UseVisualStyleBackColor = true;
             // 
             // FormLogin
             // 
@@ -406,9 +452,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(542, 476);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(558, 515);
+            this.MinimumSize = new System.Drawing.Size(558, 515);
             this.Name = "FormLogin";
-            this.Text = "Login";
+            this.Text = "进京证自动续签";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLogin_FormClosing);
             this.Load += new System.EventHandler(this.FormLogin_Load);
+            this.Resize += new System.EventHandler(this.FormLogin_Resize);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_main.ResumeLayout(false);
             this.tabPage_main.PerformLayout();
@@ -455,6 +507,10 @@
         private System.Windows.Forms.TextBox textBox_uid;
         private System.Windows.Forms.Button button_run;
         private System.Windows.Forms.TextBox textBox_log;
+        private System.Windows.Forms.CheckBox checkBox_actonStartup;
+        private System.Windows.Forms.CheckBox checkBox_autostart;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.CheckBox checkBox_autuhide;
     }
 }
 
