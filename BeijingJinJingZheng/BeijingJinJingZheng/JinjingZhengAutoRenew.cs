@@ -156,99 +156,106 @@ namespace BeijingJinJingZheng
 
         void HandlCheckEnterCar(JObject result)
         {
-            EnterCartListResponse rep = JsonConvert.DeserializeObject<EnterCartListResponse>(result.ToString());
-            if (rep.rescode == "200") {
+            try
+            {
+                EnterCartListResponse rep = JsonConvert.DeserializeObject<EnterCartListResponse>(result.ToString());
+                if (rep.rescode == "200") {
 
-                // 1.获取当前所有进京证信息
-                List<Carapplyarr> enterCarInfolist = new List<Carapplyarr>();
-                if (rep.datalist != null) {
-                    foreach (var carInfo in rep.datalist) {
-                        if (carInfo.carapplyarr != null) {
-                            foreach (var entercar in carInfo.carapplyarr)
-                            {
-                                enterCarInfolist.Add(entercar);
+                    // 1.获取当前所有进京证信息
+                    List<Carapplyarr> enterCarInfolist = new List<Carapplyarr>();
+                    if (rep.datalist != null) {
+                        foreach (var carInfo in rep.datalist) {
+                            if (carInfo.carapplyarr != null) {
+                                foreach (var entercar in carInfo.carapplyarr) {
+                                    enterCarInfolist.Add(entercar);
+                                }
                             }
                         }
                     }
-                }
 
-                if (enterCarInfolist.Count <= 0) {
-                    LogWrapper.LogInfo("当前没有进京证信息,无法为您申请新的进京证!");
-                    State = RunState.Waiting;
-                    return;
-                }
-
-                // 2.检查是否需要申请新的进京证
-
-
-                // 计算当前进京证有效期
-                DateTime carStartTime = DateTime.MaxValue;
-                DateTime carEndTime = DateTime.MinValue;
-                LogWrapper.LogInfoFormat("您现在共有 {0} 个进京证", enterCarInfolist.Count);
-                foreach (var entercar in enterCarInfolist)
-                {
-                    var enterbjstart = DateTime.Parse(entercar.enterbjstart);
-                    var enterbjend = DateTime.Parse(entercar.enterbjend);
-                    if (enterbjstart < carStartTime) carStartTime = enterbjstart;
-                    if (enterbjend > carEndTime) carEndTime = enterbjend;
-
-                    string statusStr = "状态:未知";
-                    if (entercar.status == "0") {
-                        statusStr = " 状态:审核失败";
-                    } else if (entercar.status == "1") {
-                        statusStr = "状态:审核成功";
-                    } else if(entercar.status == "2") {
-                        statusStr = "状态:审核中";
+                    if (enterCarInfolist.Count <= 0) {
+                        LogWrapper.LogInfo("当前没有进京证信息,无法为您申请新的进京证!");
+                        State = RunState.Waiting;
+                        return;
                     }
 
-                    LogWrapper.LogInfoFormat("进京证 {0} {1} 至 {2} {3}", entercar.licenseno, enterbjstart.ToString("yyyy-MM-dd"),
-                    enterbjend.ToString("yyyy-MM-dd"), statusStr);
-                }
+                    // 2.检查是否需要申请新的进京证
+
+
+                    // 计算当前进京证有效期
+                    DateTime carStartTime = DateTime.MaxValue;
+                    DateTime carEndTime = DateTime.MinValue;
+                    DateTime carReadlEndTime = DateTime.MinValue;//进京证实际到期时间,不包过审核中的进京证
+                    LogWrapper.LogInfoFormat("您现在共有 {0} 个进京证", enterCarInfolist.Count);
+                    foreach (var entercar in enterCarInfolist) {
+                        var enterbjstart = DateTime.Parse(entercar.enterbjstart);
+                        var enterbjend = DateTime.Parse(entercar.enterbjend);
+                        if (enterbjstart < carStartTime) carStartTime = enterbjstart;
+                        if (enterbjend > carEndTime) carEndTime = enterbjend;
+
+                        string statusStr = "状态:未知";
+                        if (entercar.status == "0") {
+                            statusStr = " 状态:审核失败";
+                        } else if (entercar.status == "1") {
+                            statusStr = "状态:审核成功";
+                            if (enterbjend > carReadlEndTime) carReadlEndTime = enterbjend;
+                        } else if (entercar.status == "2") {
+                            statusStr = "状态:审核中";
+                        }
+
+                        LogWrapper.LogInfoFormat("进京证 {0} {1} 至 {2} {3}", entercar.licenseno, enterbjstart.ToString("yyyy-MM-dd"),
+                        enterbjend.ToString("yyyy-MM-dd"), statusStr);
+                    }
 
 
 
 
-                LogWrapper.LogInfoFormat("您当前进京证的有效期是 {0} 至 {1}", carStartTime.ToString("yyyy-MM-dd"),
-                    carEndTime.ToString("yyyy-MM-dd"));
+                    LogWrapper.LogInfoFormat("您当前进京证的有效期是 {0} 至 {1}", carStartTime.ToString("yyyy-MM-dd"),
+                        carEndTime.ToString("yyyy-MM-dd"));
 
 
-                //如果进京证有效期的截止时间是今天,则申请新的进京证
-                var now = DateTime.Now;
-                if (carEndTime.Year == now.Year && carEndTime.Month == now.Month && carEndTime.Day == now.Day) {
-                    // 申请新进京证
-                    LogWrapper.LogInfo("您的进京证即将到期,正在为您申请新的进京证");
- 
-                    HandleSubmitpaper(enterCarInfolist[0]);
-                    State = RunState.Waiting;
-                    return;
-                }
+                    //如果进京证有效期的截止时间是今天,则申请新的进京证
+                    var now = DateTime.Now;
+                    if (carEndTime.Year == now.Year && carEndTime.Month == now.Month && carEndTime.Day == now.Day) {
+                        // 申请新进京证
+                        LogWrapper.LogInfo("您的进京证即将到期,正在为您申请新的进京证");
 
-                // 3.检查是否有新进京证申请成功
-                if (carEndTime > lastCarEndTime) {
-                    string str = string.Format("进京证审核成功 {0} {1} 至 {2}", enterCarInfolist[0].licenseno, carStartTime.ToString("yyyy-MM-dd"),
-                    carEndTime.ToString("yyyy-MM-dd"));
-                    LogWrapper.LogInfo(str);
-                    if (mConfig.EnableMail) {
-                        string time = carStartTime.ToString("yyyy-MM-dd") + "-" + carEndTime.ToString("yyyy-MM-dd");
-                        if (SendMail("进京证审核成功:" + enterCarInfolist[0].licenseno, time)) {
-                            LogWrapper.LogInfo("提醒邮件发送成功...");
-                        } else {
-                            LogWrapper.LogInfo("提醒邮件发送失败...");
+                        HandleSubmitpaper(enterCarInfolist[0]);
+                        State = RunState.Waiting;
+                        return;
+                    }
+
+                    // 3.检查是否有新进京证申请成功
+                    if (carReadlEndTime > lastCarEndTime) {
+                        string str = string.Format("进京证审核成功 {0} {1} 至 {2}", enterCarInfolist[0].licenseno, carStartTime.ToString("yyyy-MM-dd"),
+                        carReadlEndTime.ToString("yyyy-MM-dd"));
+                        LogWrapper.LogInfo(str);
+                        if (mConfig.EnableMail) {
+                            string time = carStartTime.ToString("yyyy-MM-dd") + "-" + carReadlEndTime.ToString("yyyy-MM-dd");
+                            if (SendMail("进京证审核成功:" + enterCarInfolist[0].licenseno, time)) {
+                                LogWrapper.LogInfo("提醒邮件发送成功...");
+                            } else {
+                                LogWrapper.LogInfo("提醒邮件发送失败...");
+                            }
                         }
                     }
+                    lastCarEndTime = carReadlEndTime;
+
+
+                    State = RunState.Waiting;
+
+
+                } else {
+                    LogWrapper.LogErrorFormat("获取进京证列表失败 {0}:{1}", rep.rescode, rep.resdes);
                 }
-                lastCarEndTime = carEndTime;
-
-
                 State = RunState.Waiting;
 
-                
-                
-
-            } else {
-                LogWrapper.LogErrorFormat("获取进京证列表失败 {0}:{1}",rep.rescode,rep.resdes);
+            } catch (Exception e)
+            {
+                LogWrapper.LogErrorFormat("获取进京证列表失败 {0}",e.Message);
             }
-            State = RunState.Waiting;
+            
+
         }
 
 
