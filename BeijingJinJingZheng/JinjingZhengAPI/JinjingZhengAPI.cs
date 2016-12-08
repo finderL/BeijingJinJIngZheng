@@ -15,8 +15,8 @@ using System.IO;
 namespace JinjingZheng
 {
 
-    public delegate void APICallBack(JObject result,System.Net.WebException ex=null);
-    public delegate void HTTPCallback(string result, System.Net.WebException ex = null);
+    public delegate void APICallBack(JObject result,System.Exception ex=null);
+    public delegate void HTTPCallback(string result, System.Exception ex = null);
 
     public class JinJingZhengAPI
     {
@@ -36,7 +36,11 @@ namespace JinjingZheng
             string url = "https://bjjj.zhongchebaolian.com/common_api/mobile/standard/verification";
             HttpPost(url, o.ToString(), "application/json", (result, ex) => {
                 if (ex == null) {
-                    cb?.Invoke(JObject.Parse(result));
+                    try {
+                        cb?.Invoke(JObject.Parse(result));
+                    } catch (Exception e) {
+                        cb?.Invoke(null, e);
+                    }
                 } else {
                     cb?.Invoke(null,ex);
                 }
@@ -66,7 +70,11 @@ namespace JinjingZheng
             string url = "https://api.accident.zhongchebaolian.com/industryguild_mobile_standard_self2.1.2/mobile/standard/login";
             HttpPost(url, o.ToString(), "application/json", (result, ex) => {
                 if (ex == null) {
-                    cb?.Invoke(JObject.Parse(result));
+                    try {
+                        cb?.Invoke(JObject.Parse(result));
+                    } catch (Exception e) {
+                        cb?.Invoke(null, e);
+                    }
                 } else {
                     cb?.Invoke(null, ex);
                 }
@@ -88,9 +96,14 @@ namespace JinjingZheng
                 token = Utils.CalcToken(),
                 appsource = ""
             });
-            HttpPost(url, data, "application/x-www-form-urlencoded; charset=UTF-8",(result, ex) => {
+            HttpPost(url, data, "application/x-www-form-urlencoded; charset=UTF-8", (result, ex) => {
                 if (ex == null) {
-                    cb?.Invoke(JObject.Parse(result));
+                    try {
+                        cb?.Invoke(JObject.Parse(result));
+                    } catch (Exception e) {
+                        cb?.Invoke(null,e);
+                    }
+                    
                 } else {
                     cb?.Invoke(null, ex);
                 }
@@ -160,7 +173,11 @@ namespace JinjingZheng
 
             HttpPost(url, data, "application/x-www-form-urlencoded; charset=UTF-8", (result, ex) => {
                 if (ex == null) {
-                    cb?.Invoke(JObject.Parse(result));
+                    try {
+                        cb?.Invoke(JObject.Parse(result));
+                    } catch (Exception e) {
+                        cb?.Invoke(null, e);
+                    }
                 } else {
                     cb?.Invoke(null, ex);
                 }

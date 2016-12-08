@@ -148,7 +148,7 @@ namespace BeijingJinJingZheng
         }
 
 
-        void HandleError(string prefix,System.Net.WebException ex)
+        void HandleError(string prefix,System.Exception ex)
         {
             LogWrapper.LogError(prefix+":" + ex.Message);
             State = RunState.Waiting;
@@ -191,8 +191,10 @@ namespace BeijingJinJingZheng
                         var enterbjstart = DateTime.Parse(entercar.enterbjstart);
                         var enterbjend = DateTime.Parse(entercar.enterbjend);
                         if (enterbjstart < carStartTime) carStartTime = enterbjstart;
-                        if (enterbjend > carEndTime) carEndTime = enterbjend;
-
+                        if (entercar.status == "1" || entercar.status == "2") {
+                            if (enterbjend > carEndTime) carEndTime = enterbjend;
+                        }
+                        
                         string statusStr = "状态:未知";
                         if (entercar.status == "0") {
                             statusStr = " 状态:审核失败";
