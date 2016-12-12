@@ -274,6 +274,8 @@ namespace BeijingJinJingZheng
                 Image.FromFile(mConfig.DriverPhoto),
                 Image.FromFile(mConfig.PersonPhoto),
                 carinfo.carid,
+                mConfig.CarModel,
+                mConfig.CarRegTime,
                 (result, ex) => {
 
                     if (ex == null) {

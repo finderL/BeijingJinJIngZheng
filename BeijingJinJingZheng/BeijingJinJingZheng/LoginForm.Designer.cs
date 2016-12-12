@@ -39,6 +39,15 @@
             this.tabPage_main = new System.Windows.Forms.TabPage();
             this.textBox_uid = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox_enablemail = new System.Windows.Forms.CheckBox();
+            this.textBox_tomail = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox_mailpassword = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox_mailid = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.button_run = new System.Windows.Forms.Button();
             this.checkBox_autuhide = new System.Windows.Forms.CheckBox();
             this.checkBox_actonStartup = new System.Windows.Forms.CheckBox();
             this.checkBox_autostart = new System.Windows.Forms.CheckBox();
@@ -65,23 +74,18 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox_log = new System.Windows.Forms.TextBox();
-            this.button_run = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox_enablemail = new System.Windows.Forms.CheckBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBox_mailid = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox_mailpassword = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox_tomail = new System.Windows.Forms.TextBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox_carmodle = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox_carregtime = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage_main.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_sendverfiy
@@ -184,6 +188,8 @@
             this.tabPage2.Controls.Add(this.textBox_personphoto);
             this.tabPage2.Controls.Add(this.textBox_driverphoto);
             this.tabPage2.Controls.Add(this.textBox_carphoto);
+            this.tabPage2.Controls.Add(this.textBox_carregtime);
+            this.tabPage2.Controls.Add(this.textBox_carmodle);
             this.tabPage2.Controls.Add(this.textBox_drivingphoto);
             this.tabPage2.Controls.Add(this.textBox_vehicletype);
             this.tabPage2.Controls.Add(this.textBox_cartypecode);
@@ -193,7 +199,9 @@
             this.tabPage2.Controls.Add(this.textBox_userid);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.label18);
             this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.label17);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label8);
@@ -209,6 +217,91 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "设置";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBox_enablemail);
+            this.groupBox1.Controls.Add(this.textBox_tomail);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.textBox_mailpassword);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.textBox_mailid);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Location = new System.Drawing.Point(236, 20);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(234, 152);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "邮件提醒";
+            // 
+            // checkBox_enablemail
+            // 
+            this.checkBox_enablemail.AutoSize = true;
+            this.checkBox_enablemail.Location = new System.Drawing.Point(20, 20);
+            this.checkBox_enablemail.Name = "checkBox_enablemail";
+            this.checkBox_enablemail.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_enablemail.TabIndex = 7;
+            this.checkBox_enablemail.Text = "开启邮件提醒";
+            this.checkBox_enablemail.UseVisualStyleBackColor = true;
+            // 
+            // textBox_tomail
+            // 
+            this.textBox_tomail.Location = new System.Drawing.Point(106, 102);
+            this.textBox_tomail.Name = "textBox_tomail";
+            this.textBox_tomail.Size = new System.Drawing.Size(100, 21);
+            this.textBox_tomail.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(14, 102);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(77, 12);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "接收提醒邮箱";
+            // 
+            // textBox_mailpassword
+            // 
+            this.textBox_mailpassword.Location = new System.Drawing.Point(106, 75);
+            this.textBox_mailpassword.Name = "textBox_mailpassword";
+            this.textBox_mailpassword.PasswordChar = '*';
+            this.textBox_mailpassword.Size = new System.Drawing.Size(100, 21);
+            this.textBox_mailpassword.TabIndex = 1;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(62, 75);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(29, 12);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "密码";
+            // 
+            // textBox_mailid
+            // 
+            this.textBox_mailid.Location = new System.Drawing.Point(106, 48);
+            this.textBox_mailid.Name = "textBox_mailid";
+            this.textBox_mailid.Size = new System.Drawing.Size(100, 21);
+            this.textBox_mailid.TabIndex = 1;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(62, 48);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(29, 12);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "邮箱";
+            // 
+            // button_run
+            // 
+            this.button_run.Location = new System.Drawing.Point(199, 397);
+            this.button_run.Name = "button_run";
+            this.button_run.Size = new System.Drawing.Size(84, 23);
+            this.button_run.TabIndex = 8;
+            this.button_run.Text = "启动";
+            this.button_run.UseVisualStyleBackColor = true;
+            this.button_run.Click += new System.EventHandler(this.button_run_Click);
             // 
             // checkBox_autuhide
             // 
@@ -428,13 +521,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "用户ID";
             // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "进京证自动续签,双击打开";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
-            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.textBox_log);
@@ -459,90 +545,44 @@
             this.textBox_log.Size = new System.Drawing.Size(501, 417);
             this.textBox_log.TabIndex = 6;
             // 
-            // button_run
+            // notifyIcon1
             // 
-            this.button_run.Location = new System.Drawing.Point(199, 397);
-            this.button_run.Name = "button_run";
-            this.button_run.Size = new System.Drawing.Size(84, 23);
-            this.button_run.TabIndex = 8;
-            this.button_run.Text = "启动";
-            this.button_run.UseVisualStyleBackColor = true;
-            this.button_run.Click += new System.EventHandler(this.button_run_Click);
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "进京证自动续签,双击打开";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
             // 
-            // groupBox1
+            // label17
             // 
-            this.groupBox1.Controls.Add(this.checkBox_enablemail);
-            this.groupBox1.Controls.Add(this.textBox_tomail);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.textBox_mailpassword);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.textBox_mailid);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Location = new System.Drawing.Point(236, 20);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(234, 152);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "邮件提醒";
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(247, 191);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(53, 12);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "车辆型号";
             // 
-            // checkBox_enablemail
+            // textBox_carmodle
             // 
-            this.checkBox_enablemail.AutoSize = true;
-            this.checkBox_enablemail.Location = new System.Drawing.Point(20, 20);
-            this.checkBox_enablemail.Name = "checkBox_enablemail";
-            this.checkBox_enablemail.Size = new System.Drawing.Size(96, 16);
-            this.checkBox_enablemail.TabIndex = 7;
-            this.checkBox_enablemail.Text = "开启邮件提醒";
-            this.checkBox_enablemail.UseVisualStyleBackColor = true;
+            this.textBox_carmodle.Location = new System.Drawing.Point(342, 188);
+            this.textBox_carmodle.Name = "textBox_carmodle";
+            this.textBox_carmodle.Size = new System.Drawing.Size(100, 21);
+            this.textBox_carmodle.TabIndex = 2;
             // 
-            // label14
+            // label18
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(62, 48);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(29, 12);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "邮箱";
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(247, 216);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(77, 12);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "车辆注册时间";
             // 
-            // textBox_mailid
+            // textBox_carregtime
             // 
-            this.textBox_mailid.Location = new System.Drawing.Point(106, 48);
-            this.textBox_mailid.Name = "textBox_mailid";
-            this.textBox_mailid.Size = new System.Drawing.Size(100, 21);
-            this.textBox_mailid.TabIndex = 1;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(62, 75);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(29, 12);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "密码";
-            // 
-            // textBox_mailpassword
-            // 
-            this.textBox_mailpassword.Location = new System.Drawing.Point(106, 75);
-            this.textBox_mailpassword.Name = "textBox_mailpassword";
-            this.textBox_mailpassword.PasswordChar = '*';
-            this.textBox_mailpassword.Size = new System.Drawing.Size(100, 21);
-            this.textBox_mailpassword.TabIndex = 1;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(14, 102);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(77, 12);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "接收提醒邮箱";
-            // 
-            // textBox_tomail
-            // 
-            this.textBox_tomail.Location = new System.Drawing.Point(106, 102);
-            this.textBox_tomail.Name = "textBox_tomail";
-            this.textBox_tomail.Size = new System.Drawing.Size(100, 21);
-            this.textBox_tomail.TabIndex = 1;
+            this.textBox_carregtime.Location = new System.Drawing.Point(342, 213);
+            this.textBox_carregtime.Name = "textBox_carregtime";
+            this.textBox_carregtime.Size = new System.Drawing.Size(100, 21);
+            this.textBox_carregtime.TabIndex = 2;
             // 
             // FormLogin
             // 
@@ -564,10 +604,10 @@
             this.tabPage_main.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -622,6 +662,10 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox_mailid;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox_carregtime;
+        private System.Windows.Forms.TextBox textBox_carmodle;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
     }
 }
 

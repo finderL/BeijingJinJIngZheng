@@ -103,6 +103,8 @@ namespace BeijingJinJingZheng
             textBox_mailid.Text = mConfig.UserMailID;
             textBox_mailpassword.Text = mConfig.UserMailPassword;
             textBox_tomail.Text = mConfig.ToMail;
+            textBox_carmodle.Text = mConfig.CarModel;
+            textBox_carregtime.Text = mConfig.CarRegTime;
 
         }
 
@@ -130,6 +132,9 @@ namespace BeijingJinJingZheng
             mConfig.UserMailID = textBox_mailid.Text;
             mConfig.UserMailPassword= textBox_mailpassword.Text;
             mConfig.ToMail= textBox_tomail.Text;
+            mConfig.CarModel = textBox_carmodle.Text;
+            mConfig.CarRegTime = textBox_carregtime.Text;
+
             mConfig.Save("./config.json");
         }
 

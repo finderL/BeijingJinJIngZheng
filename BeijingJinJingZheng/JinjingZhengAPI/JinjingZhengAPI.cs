@@ -128,10 +128,13 @@ namespace JinjingZheng
         /// <param name="driverphoto">驾驶证照片</param>
         /// <param name="personphoto">本人持身份证照</param>
         /// <param name="carid"></param>
+        /// <param name="carmodel">车辆型号</param>
+        /// <param name="carregtime">注册时间</param>
         /// <param name="cb"></param>
         public static void Submitpaper(string userid,int inbjduration,DateTime inbjtime,
             string licenseno,string engineno,string cartypecode,string vehicletype, Image drivingphoto,
-            Image carphoto,string drivername,string driverlicenseno, Image driverphoto, Image personphoto,string carid, APICallBack cb)
+            Image carphoto,string drivername,string driverlicenseno, Image driverphoto, Image personphoto,string carid,
+            string carmodel,string carregtime, APICallBack cb)
         {
 
             string url = "https://api.jinjingzheng.zhongchebaolian.com/enterbj/platform/enterbj/submitpaper";
@@ -162,6 +165,9 @@ namespace JinjingZheng
                 imei = "",
                 imsi = "",
                 carid = carid,
+                carmodel = carmodel,
+                carregtime = carregtime,
+                envGrade = "3"
             });
 
             data = data.Replace("IMGDRIVINGPHOTO", Utils.Image2Base64(drivingphoto));

@@ -35,7 +35,8 @@ namespace BeijingJinJingZheng
         public string UserMailID;
         public string UserMailPassword;
         public string ToMail;
-
+        public string CarModel;
+        public string CarRegTime;
 
         public static UserConfig FormFile(string path)
         {
